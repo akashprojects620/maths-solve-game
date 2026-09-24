@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowLeft, Settings, Volume2, VolumeX, Smartphone, Monitor } from 'lucide-react';
+import { ArrowLeft, Settings, Volume2, VolumeX, Smartphone, Monitor, Download } from 'lucide-react';
 import { soundManager } from '../../utils/audio';
 import { triggerHaptic } from '../../utils/haptics';
 import { GameSettings } from '../../types';
@@ -13,6 +13,7 @@ interface HeaderProps {
   onBack?: () => void;
   onOpenSettings: () => void;
   onOpenDevDashboard?: () => void;
+  onOpenInstallModal?: () => void;
   settings: GameSettings;
   onToggleSound: () => void;
   onToggleFrameMode: () => void;
@@ -25,6 +26,7 @@ export const Header: React.FC<HeaderProps> = ({
   onBack,
   onOpenSettings,
   onOpenDevDashboard,
+  onOpenInstallModal,
   settings,
   onToggleSound,
   onToggleFrameMode,
@@ -172,6 +174,22 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
             <span className="font-game font-bold text-xs">{coins}</span>
           </motion.div>
+
+          {/* Install Mobile / APK Button */}
+          {onOpenInstallModal && (
+            <button
+              onClick={() => {
+                soundManager.playClick();
+                triggerHaptic('medium', settings.hapticEnabled);
+                onOpenInstallModal();
+              }}
+              className="p-2 bg-emerald-500/25 hover:bg-emerald-500/40 text-emerald-200 border border-emerald-400/40 active:scale-95 rounded-full transition cursor-pointer flex items-center justify-center shadow-sm"
+              title="Install Mobile App / APK"
+              aria-label="Install App"
+            >
+              <Download className="w-4 h-4 text-emerald-300" />
+            </button>
+          )}
 
           {/* Desktop Frame Toggle */}
           <button

@@ -11,6 +11,7 @@ interface SettingsModalProps {
   onClose: () => void;
   onOpenHowToPlay: () => void;
   onOpenDevDashboard?: () => void;
+  onOpenInstallModal?: () => void;
 }
 
 export const SettingsModal: React.FC<SettingsModalProps> = ({
@@ -20,6 +21,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   onClose,
   onOpenHowToPlay,
   onOpenDevDashboard,
+  onOpenInstallModal,
 }) => {
   const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [activeInfoTab, setActiveInfoTab] = useState<'ABOUT' | 'PRIVACY' | 'TERMS' | null>(null);
@@ -238,6 +240,20 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             </button>
           </div>
         </div>
+
+        {/* Install Mobile App / APK Button */}
+        {onOpenInstallModal && (
+          <button
+            onClick={() => {
+              onClose();
+              onOpenInstallModal();
+            }}
+            className="w-full candy-btn mb-2.5 py-3 rounded-2xl bg-gradient-to-r from-emerald-500 via-teal-600 to-indigo-600 hover:from-emerald-400 hover:to-teal-500 border border-emerald-300 text-white font-game text-sm font-bold flex items-center justify-center gap-2 cursor-pointer shadow-md"
+          >
+            <Smartphone className="w-4 h-4 text-emerald-200" />
+            <span>Install on Mobile / Download APK</span>
+          </button>
+        )}
 
         {/* How to Play Guide Button */}
         <button

@@ -11,6 +11,8 @@ import { EndlessModeView } from './components/views/EndlessModeView';
 import { SettingsModal } from './components/views/SettingsModal';
 import { HowToPlayModal } from './components/views/HowToPlayModal';
 import { DeveloperDashboardModal } from './components/views/DeveloperDashboardModal';
+import { InstallApkModal } from './components/views/InstallApkModal';
+import { OfflineIndicator } from './components/common/OfflineIndicator';
 import { MAIN_LEVELS } from './data/levels';
 import {
   ActiveScreen,
@@ -36,6 +38,7 @@ export default function App() {
   const [showSettings, setShowSettings] = useState(false);
   const [showHowToPlay, setShowHowToPlay] = useState(false);
   const [showDevDashboard, setShowDevDashboard] = useState(false);
+  const [showInstallModal, setShowInstallModal] = useState(false);
 
   // Sync audio manager settings
   useEffect(() => {
@@ -144,6 +147,7 @@ export default function App() {
         onBack={activeScreen !== 'MAP' ? () => setActiveScreen('MAP') : undefined}
         onOpenSettings={() => setShowSettings(true)}
         onOpenDevDashboard={() => setShowDevDashboard(true)}
+        onOpenInstallModal={() => setShowInstallModal(true)}
         settings={settings}
         onToggleSound={handleToggleSound}
         onToggleFrameMode={handleToggleFrameMode}
@@ -157,6 +161,7 @@ export default function App() {
             playerStats={playerStats}
             onSelectLevel={handleSelectLevel}
             onNavigateScreen={(screen) => setActiveScreen(screen)}
+            onOpenInstallModal={() => setShowInstallModal(true)}
             hapticEnabled={settings.hapticEnabled}
           />
         )}
@@ -230,6 +235,7 @@ export default function App() {
           onClose={() => setShowSettings(false)}
           onOpenHowToPlay={() => setShowHowToPlay(true)}
           onOpenDevDashboard={() => setShowDevDashboard(true)}
+          onOpenInstallModal={() => setShowInstallModal(true)}
         />
       )}
 
@@ -237,6 +243,17 @@ export default function App() {
       {showHowToPlay && (
         <HowToPlayModal onClose={() => setShowHowToPlay(false)} />
       )}
+
+      {/* Install Mobile App / APK Modal */}
+      {showInstallModal && (
+        <InstallApkModal
+          onClose={() => setShowInstallModal(false)}
+          hapticEnabled={settings.hapticEnabled}
+        />
+      )}
+
+      {/* Offline Mode Alert */}
+      <OfflineIndicator />
 
       {/* Developer Telemetry & Performance Dashboard Modal */}
       {showDevDashboard && (

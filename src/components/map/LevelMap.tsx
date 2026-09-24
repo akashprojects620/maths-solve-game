@@ -4,12 +4,14 @@ import { Level, PlayerStats, ActiveScreen } from '../../types';
 import { soundManager } from '../../utils/audio';
 import { triggerHaptic } from '../../utils/haptics';
 import { MathGeniusLogo } from '../common/MathGeniusLogo';
+import { PWAInstallBanner } from '../common/PWAInstallBanner';
 
 interface LevelMapProps {
   levels: Level[];
   playerStats: PlayerStats;
   onSelectLevel: (levelId: number) => void;
   onNavigateScreen: (screen: ActiveScreen) => void;
+  onOpenInstallModal?: () => void;
   hapticEnabled?: boolean;
 }
 
@@ -18,6 +20,7 @@ export const LevelMap: React.FC<LevelMapProps> = ({
   playerStats,
   onSelectLevel,
   onNavigateScreen,
+  onOpenInstallModal,
   hapticEnabled = true,
 }) => {
   const currentLevelRef = useRef<HTMLDivElement | null>(null);
@@ -164,6 +167,14 @@ export const LevelMap: React.FC<LevelMapProps> = ({
           </div>
         </button>
       </div>
+
+      {/* Install Mobile / APK Banner */}
+      {onOpenInstallModal && (
+        <PWAInstallBanner
+          onOpenModal={onOpenInstallModal}
+          hapticEnabled={hapticEnabled}
+        />
+      )}
 
       {/* Quick Navigation Mode Cards */}
       <div className="w-full max-w-md px-4 pt-2 pb-2">
