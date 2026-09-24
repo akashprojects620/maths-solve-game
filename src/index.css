@@ -1,0 +1,172 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+.font-game {
+  font-family: 'Fredoka', 'Plus Jakarta Sans', cursive, sans-serif;
+}
+
+.font-math {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Custom 3D casual game button styles */
+.candy-btn {
+  position: relative;
+  transition: all 0.1s ease-out;
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.2), 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+}
+
+.candy-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+}
+
+/* Hide scrollbars on mobile viewport and map */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Map node gentle pulse and focus halo animations */
+@keyframes pulse-halo {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.85;
+  }
+  60% {
+    transform: scale(1.55);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(2.0);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-halo-delayed {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  30% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+  80% {
+    transform: scale(1.85);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(2.3);
+    opacity: 0;
+  }
+}
+
+@keyframes gentle-node-pulse {
+  0%, 100% {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.65));
+  }
+  50% {
+    transform: scale(1.18);
+    filter: drop-shadow(0 0 24px rgba(245, 158, 11, 0.95));
+  }
+}
+
+@keyframes ambient-glow-pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.3);
+  }
+}
+
+.animate-pulse-halo {
+  animation: pulse-halo 2.4s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+
+.animate-pulse-halo-delayed {
+  animation: pulse-halo-delayed 2.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.8s infinite;
+}
+
+.animate-gentle-node-pulse {
+  animation: gentle-node-pulse 2.2s ease-in-out infinite;
+}
+
+.animate-ambient-glow-pulse {
+  animation: ambient-glow-pulse 3s ease-in-out infinite;
+}
+
+/* Floating Mathematical Ambient Particles */
+@keyframes float-math {
+  0% {
+    transform: translateY(105vh) translateX(0px) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.35;
+  }
+  85% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-10vh) translateX(30px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.animate-float-math-1 {
+  animation: float-math 22s linear infinite;
+}
+.animate-float-math-2 {
+  animation: float-math 28s linear infinite 5s;
+}
+.animate-float-math-3 {
+  animation: float-math 18s linear infinite 11s;
+}
+.animate-float-math-4 {
+  animation: float-math 25s linear infinite 16s;
+}
+
+/* Shimmer animation for golden/gem badges */
+@keyframes gold-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.gold-shimmer-effect {
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+  background-size: 200% 100%;
+  animation: gold-shimmer 3.5s infinite;
+}
+
+/* Gentle float for cards */
+@keyframes gentle-levitate {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-gentle-levitate {
+  animation: gentle-levitate 4s ease-in-out infinite;
+}
+

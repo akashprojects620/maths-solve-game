@@ -1,0 +1,6 @@
+{
+  "name": "Math Genius: Number Brain Puzzle",
+  "description": "A colorful, casual mathematical brain-training puzzle game with 50 progressive levels, infinite procedural endless levels, daily challenges, math crosswords, and interactive logic puzzles.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
